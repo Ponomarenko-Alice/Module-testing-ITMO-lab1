@@ -1,5 +1,6 @@
 package radio.smart;
 
+import radio.Direction;
 import radio.RadioPlayer;
 
 public class SmartRadioPlayer extends RadioPlayer {
@@ -21,20 +22,23 @@ public class SmartRadioPlayer extends RadioPlayer {
     }
 
     @Override
-    public void changeFrequencyRadio(double frequency) {
-        System.out.println("changeF");
+    public void update() {
+        SmartRadio radio = (SmartRadio) this.getRadio();
+        Direction lastInteractionDisplayDirection = radio.getDisplay().getLastInteractionDirection();
+        int lastInteractionDisplayValue = radio.getDisplay().getLastInteractionValue();
+        switch (lastInteractionDisplayDirection) {
+            case RIGHT -> this.playRadio();
+            case LEFT -> this.stopRadio();
+            case UP -> this.setVolume(this.getVolume() + lastInteractionDisplayValue);
+            case DOWN -> this.setVolume(this.getVolume() - lastInteractionDisplayValue);
+            case FORWARD -> this.setFrequency(this.getFrequency() + lastInteractionDisplayValue);
+            case BACK -> this.setFrequency(this.getFrequency() - lastInteractionDisplayValue);
+        }
 
-    }
-
-    @Override
-    public void update(int volume, double frequency, boolean isPlaying) {
-        super.changeVolumeRadio(volume);
-        super.changeFrequencyRadio(frequency);
-        super.changePlayingStatus(isPlaying);
         display();
+
+        radio.getDisplay().setWithoutChangeState();
     }
-
-
 
 
 }

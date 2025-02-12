@@ -45,7 +45,7 @@ public abstract class Radio implements Observable {
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update(radioPlayer.getVolume(), radioPlayer.getFrequency(), radioPlayer.isPLaying());
+            observer.update();
         }
     }
 }

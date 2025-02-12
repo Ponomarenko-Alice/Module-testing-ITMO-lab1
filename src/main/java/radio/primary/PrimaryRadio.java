@@ -7,10 +7,14 @@ import radio.RadioPlayer;
 @Getter
 public class PrimaryRadio extends Radio {
     private final Button button;
+    private final VolumeWheel volumeWheel;
+    private final FrequencyWheel frequencyWheel;
 
-    public PrimaryRadio(RadioPlayer radioPlayer, Button button) {
+    public PrimaryRadio(RadioPlayer radioPlayer, Button button, Wheel volumeWheel, Wheel frequencyWheel) {
         super(radioPlayer);
         this.button = button;
+        this.volumeWheel = (VolumeWheel) volumeWheel;
+        this.frequencyWheel = (FrequencyWheel) frequencyWheel;
     }
 
     @Override
@@ -37,4 +41,5 @@ public class PrimaryRadio extends Radio {
     public void notifyObservers() {
         super.notifyObservers();
     }
+
 }

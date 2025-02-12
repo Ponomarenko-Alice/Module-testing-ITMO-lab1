@@ -1,9 +1,10 @@
 package radio.smart;
 
-import radio.Observer;
+import lombok.Getter;
 import radio.Radio;
 import radio.RadioPlayer;
 
+@Getter
 public class SmartRadio extends Radio {
     private final Display display;
 
@@ -27,15 +28,5 @@ public class SmartRadio extends Radio {
         super.changeVolume(volume);
     }
 
-    @Override
-    public void changeFrequency(double frequency) {
-        super.changeFrequency(frequency);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer observer : super.getObservers())
-            observer.update(super.radioPlayer.getVolume(), super.radioPlayer.getFrequency(), radioPlayer.isPLaying());
-    }
 
 }

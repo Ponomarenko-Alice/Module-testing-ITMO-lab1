@@ -1,10 +1,13 @@
-package radio.smart;
+package radio;
 
 public enum Direction {
     UP,
     DOWN,
-    LEFT,
     RIGHT,
+    LEFT,
+
     FORWARD,
-    BACK
+    BACK,
+    NONE
+
 }

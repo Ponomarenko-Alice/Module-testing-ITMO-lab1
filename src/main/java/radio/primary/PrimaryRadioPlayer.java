@@ -1,9 +1,9 @@
 package radio.primary;
 
+import radio.Direction;
 import radio.RadioPlayer;
 
 public class PrimaryRadioPlayer extends RadioPlayer {
-
     @Override
     public void playRadio() {
         System.out.println("Playing primary radio...");
@@ -27,19 +27,34 @@ public class PrimaryRadioPlayer extends RadioPlayer {
     }
 
     @Override
-    public void update(int volume, double frequency, boolean mustPlay) {
-        if (mustPlay) {
-            playRadio();
-        } else {
-            stopRadio();
-        }
-        System.out.println("Updated frequency: " + frequency + ", volume: " + volume);
-    }
-
-    @Override
     public void update() {
-        System.out.printf("пересмотреть "); //TODO
-    }
+        PrimaryRadio radio = (PrimaryRadio) this.getRadio();
 
+        boolean shouldPlay = radio.getButton().isPressed();
+        setPLaying(shouldPlay); //TODO
+
+        if (radio.getVolumeWheel().getLastTwistedDegree() != WITHOUT_CHANGE_STATE) {
+            Direction newVolumeDirection = radio.getVolumeWheel().getLastInteractionDirection();
+            int newVolumeValue = Direction.RIGHT.equals(newVolumeDirection)
+                    ? this.getVolume() + radio.getVolumeWheel().getLastTwistedDegree()
+                    : this.getVolume() - radio.getVolumeWheel().getLastTwistedDegree();
+
+            this.setVolume(newVolumeValue);
+
+        }
+
+        if (radio.getFrequencyWheel().getLastTwistedDegree() != WITHOUT_CHANGE_STATE) {
+            Direction newFrequencyDirection = radio.getFrequencyWheel().getLastInteractionDirection();
+            double newFrequencyValue = Direction.RIGHT.equals(newFrequencyDirection)
+                    ? this.getFrequency() + radio.getFrequencyWheel().getLastTwistedDegree()
+                    : this.getFrequency() - radio.getFrequencyWheel().getLastTwistedDegree();
+
+            this.setFrequency(newFrequencyValue);
+        }
+
+        display();
+        radio.getVolumeWheel().setWithoutChangeState();
+        radio.getFrequencyWheel().setWithoutChangeState();
+    }
 
 }

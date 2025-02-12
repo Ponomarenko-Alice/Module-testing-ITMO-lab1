@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Button implements Observable {
     private boolean isPressed;
-    private List<Observer> observers = new LinkedList<>();;
+    private final List<Observer> observers = new LinkedList<>();
 
     public Button() {
         this.isPressed = false;
@@ -18,7 +18,6 @@ public class Button implements Observable {
         this.isPressed = !isPressed;
         notifyObservers();
     }
-
 
     @Override
     public void registerObserver(Observer o) {
@@ -32,7 +31,7 @@ public class Button implements Observable {
 
     @Override
     public void notifyObservers() {
-        for (Observer observer: observers) {
+        for (Observer observer : observers) {
             observer.update();
         }
     }
