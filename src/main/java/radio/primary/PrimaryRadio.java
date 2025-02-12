@@ -1,11 +1,11 @@
 package radio.primary;
 
-import radio.Observer;
+import lombok.Getter;
 import radio.Radio;
 import radio.RadioPlayer;
 
+@Getter
 public class PrimaryRadio extends Radio {
-
     private final Button button;
 
     public PrimaryRadio(RadioPlayer radioPlayer, Button button) {
@@ -33,13 +33,8 @@ public class PrimaryRadio extends Radio {
         super.changeFrequency(frequency);
     }
 
-    public Button getButton() {
-        return button;
-    }
-
     @Override
     public void notifyObservers() {
-        for (Observer observer : super.getObservers())
-            observer.update(super.radioPlayer.getVolume(), super.radioPlayer.getFrequency(), button.isPressed());
+        super.notifyObservers();
     }
 }

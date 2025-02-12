@@ -27,12 +27,14 @@ public class SmartRadioPlayer extends RadioPlayer {
     }
 
     @Override
-    public void update(int volume, double frequency, boolean mustPlay) {
-
+    public void update(int volume, double frequency, boolean isPlaying) {
+        super.changeVolumeRadio(volume);
+        super.changeFrequencyRadio(frequency);
+        super.changePlayingStatus(isPlaying);
+        display();
     }
-    @Override
-    public void update(boolean mustPlay) {
 
-    }
+
+
 
 }

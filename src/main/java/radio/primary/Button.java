@@ -19,6 +19,7 @@ public class Button implements Observable {
         notifyObservers();
     }
 
+
     @Override
     public void registerObserver(Observer o) {
         observers.add(o);
@@ -32,7 +33,7 @@ public class Button implements Observable {
     @Override
     public void notifyObservers() {
         for (Observer observer: observers) {
-            observer.update(isPressed);
+            observer.update();
         }
     }
 

@@ -1,13 +1,20 @@
 package radio;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class RadioPlayer implements Observer {
-     int volume; // 0 --- 100
-    protected double frequency; // > 0
-    private int INITIALVOLUME = 20;
 
-    private int MINVOLUME = 0;
+    private int volume; // 0 --- 100
+    private double frequency; // > 0
+    private boolean isPLaying;
+    private int INITIAL_VOLUME = 20;
 
-    private int MAXVOLUME = 100;
+    private int MIN_VOLUME = 0;
+
+    private int MAX_VOLUME = 100;
 
     public void playRadio() {
     }
@@ -23,22 +30,34 @@ public abstract class RadioPlayer implements Observer {
     public void changeFrequencyRadio(double frequency) {
     }
 
-    public void changePlayingStatus(boolean isPlaying) {
+    public void changePlayingStatus(boolean mustPlay) {
+        this.isPLaying = mustPlay;
+    }
+
+
+    public void setPLaying(boolean PLaying) {
+        isPLaying = PLaying;
     }
 
     @Override
-    public void update(int volume, double frequency, boolean isPlaying) {
-        changeVolumeRadio(volume);
-        changeFrequencyRadio(frequency);
-
+    public void update(int volume, double frequency, boolean mustPlay) {
+        this.volume = volume;
+        this.frequency = frequency;
+        if (mustPlay) {
+            playRadio();
+        } else {
+            stopRadio();
+        }
+        display();
     }
 
-    public int getVolume() {
-        return volume;
+    public void display() {
+        if (isPLaying) {
+            System.out.printf("%s is playing on frequency %f \n volume: %d", this.getClass().getName(), frequency, volume);
+        } else {
+            System.out.printf("%s isn't playing", this.getClass().getName());
+        }
     }
 
-    public double getFrequency() {
-        return frequency;
-    }
 }
 

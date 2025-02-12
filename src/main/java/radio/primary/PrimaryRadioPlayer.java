@@ -6,22 +6,24 @@ public class PrimaryRadioPlayer extends RadioPlayer {
 
     @Override
     public void playRadio() {
-        System.out.println("lalala primary");
+        System.out.println("Playing primary radio...");
     }
 
     @Override
     public void stopRadio() {
-        System.out.println("primary radio stopped");
+        System.out.println("Primary radio stopped.");
     }
 
     @Override
     public void changeVolumeRadio(int volume) {
-        System.out.println("primary radio volume");
+        super.changeVolumeRadio(volume);
+        System.out.println("Primary radio volume changed to " + volume);
     }
 
     @Override
     public void changeFrequencyRadio(double frequency) {
-        System.out.println("primary radio frequency");
+        super.changeFrequencyRadio(frequency);
+        System.out.println("Primary radio frequency changed to " + frequency);
     }
 
     @Override
@@ -31,16 +33,12 @@ public class PrimaryRadioPlayer extends RadioPlayer {
         } else {
             stopRadio();
         }
+        System.out.println("Updated frequency: " + frequency + ", volume: " + volume);
     }
 
-    // Update method for button observer
     @Override
-    public void update(boolean isPressed) {
-        if (isPressed) {
-            playRadio();
-        } else {
-            stopRadio();
-        }
+    public void update() {
+        System.out.printf("пересмотреть "); //TODO
     }
 
 

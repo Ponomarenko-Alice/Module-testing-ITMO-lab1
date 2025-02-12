@@ -1,12 +1,14 @@
 package radio;
 
-import java.util.LinkedList;
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Radio implements Observable {
-    public RadioPlayer radioPlayer;
-    private boolean isPlaying;
-    private List<Observer> observers = new LinkedList<>();
+    protected final RadioPlayer radioPlayer;
+    @Getter
+    private final List<Observer> observers = new ArrayList<>();
 
     public Radio(RadioPlayer radioPlayer) {
         this.radioPlayer = radioPlayer;
@@ -18,20 +20,16 @@ public abstract class Radio implements Observable {
 
     public void stop() {
         radioPlayer.stopRadio();
-
     }
 
     public void changeVolume(int volume) {
         radioPlayer.changeVolumeRadio(volume);
-
+        notifyObservers();
     }
 
     public void changeFrequency(double frequency) {
         radioPlayer.changeFrequencyRadio(frequency);
-    }
-
-    public void changePlayingStatus(boolean isPlaying) {
-        this.isPlaying = !isPlaying;
+        notifyObservers();
     }
 
     @Override
@@ -46,15 +44,8 @@ public abstract class Radio implements Observable {
 
     @Override
     public void notifyObservers() {
-        for (Observer observer : observers)
-            observer.update(radioPlayer.volume, radioPlayer.frequency, isPlaying);
-    }
-
-    public List<Observer> getObservers() {
-        return observers;
-    }
-
-    public boolean isPlaying() {
-        return isPlaying;
+        for (Observer observer : observers) {
+            observer.update(radioPlayer.getVolume(), radioPlayer.getFrequency(), radioPlayer.isPLaying());
+        }
     }
 }
