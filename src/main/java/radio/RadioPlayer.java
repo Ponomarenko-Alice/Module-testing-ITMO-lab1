@@ -25,9 +25,13 @@ public abstract class RadioPlayer implements Observer {
     }
 
     public void playRadio() {
+        System.out.println("Playing primary radio...");
+        changePlayingStatus(true);
     }
 
     public void stopRadio() {
+        System.out.println("Primary radio stopped.");
+        changePlayingStatus(false);
     }
 
     public void changeVolumeRadio(int volume) {

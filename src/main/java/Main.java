@@ -29,17 +29,15 @@ public class Main {
         frequencyWheel.registerObserver(primaryRadioPlayer);
 
         zafod.press(button);
-        Thread.sleep(100);
 
         zafod.twist(volumeWheel, Direction.RIGHT, 50);
-        Thread.sleep(100);
 
         zafod.twist(frequencyWheel, Direction.LEFT, 10);
-        Thread.sleep(100);
 
         zafod.press(button);
-        Thread.sleep(1000);
 
+        zafod.wave(Direction.RIGHT);
+        Thread.sleep(100);
 
     }
 }
