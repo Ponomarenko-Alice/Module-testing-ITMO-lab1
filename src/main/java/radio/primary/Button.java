@@ -7,15 +7,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Button implements Observable {
-    private boolean isPressed;
     private final List<Observer> observers = new LinkedList<>();
+    private boolean isPressed;
 
     public Button() {
         this.isPressed = false;
     }
 
     public void changePressState() {
-        this.isPressed = !isPressed;
+        isPressed = !isPressed;
         notifyObservers();
     }
 

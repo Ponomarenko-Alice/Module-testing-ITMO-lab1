@@ -26,7 +26,7 @@ public class Display implements Observable, Observer {
     public void setLastInteractionDirection(Direction newDirection, int waveValue) throws DisplayInteractionException {
         lastInteractionDirection = newDirection;
         if (waveValue > MAX_WAVE_VALUE) {
-            this.lastInteractionValue = MAX_WAVE_VALUE;
+            lastInteractionValue = MAX_WAVE_VALUE;
         } else if (waveValue <= MIN_WAVE_VALUE) {
             throw new DisplayInteractionException("Negative wave value");
         } else {
@@ -36,8 +36,8 @@ public class Display implements Observable, Observer {
     }
 
     public void setWithoutChangeState() {
-        this.lastInteractionDirection = Direction.NONE;
-        this.lastInteractionValue = WITHOUT_CHANGE_STATE;
+        lastInteractionDirection = Direction.NONE;
+        lastInteractionValue = WITHOUT_CHANGE_STATE;
 
     }
 
@@ -72,7 +72,7 @@ public class Display implements Observable, Observer {
         } catch (DisplayInteractionException e) { // cancel potential applied changes
             lastInteractionDirection = Direction.NONE;
             lastInteractionValue = WITHOUT_CHANGE_STATE;
-            System.out.println("Failed to interact with display. " + e.getMessage());
+            System.out.printf("Failed to interact with display. %s \n", e.getMessage());
         }
 
     }

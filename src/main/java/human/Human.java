@@ -22,7 +22,7 @@ public class Human implements Movable, Observable {
 
     @Override
     public void wave(Direction direction, int waveValue) {
-        System.out.println("\n" + this.name + " waved hand to " + direction.name() + " with " + waveValue + " value");
+        System.out.printf("\n %s waved hand to %s with %d value \n", name, direction.name(), waveValue);
         notifyObservers(direction, waveValue);
     }
 
@@ -33,20 +33,20 @@ public class Human implements Movable, Observable {
 
     @Override
     public void twist(Object object, Direction direction, int degree) {
-        System.out.println("\n" + this.name + " twisted the " + object.getClass().getSimpleName() + " to " + direction.name() + " on " + degree + " degree");
+        System.out.printf("\n %s twisted the %s to %s on %d degree \n", name, object.getClass().getSimpleName(), direction.name(), degree);
         try {
             if (object instanceof Wheel wheel) {
                 wheel.setLastInteraction(direction, degree);
             }
         } catch (WheelDirectionException e) {
-            System.out.println("\n Failed to twist wheel. " + e.getMessage());
+            System.out.printf("\n Failed to twist wheel. %s \n", e.getMessage());
         }
     }
 
     @Override
     public void press(Object object) {
         if (object instanceof Button button) {
-            System.out.println("\n" + this.name + " pressed the button ");
+            System.out.printf("\n %s pressed the button \n", name);
             button.changePressState();
         }
     }

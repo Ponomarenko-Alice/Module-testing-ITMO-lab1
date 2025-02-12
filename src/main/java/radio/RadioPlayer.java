@@ -26,12 +26,12 @@ public abstract class RadioPlayer implements Observer {
     }
 
     public void playRadio() {
-        System.out.println("Playing " + radio.getClass().getSimpleName() + "...");
+        System.out.printf("Playing %s... \n", radio.getClass().getSimpleName());
         changePlayingStatus(true);
     }
 
     public void stopRadio() {
-        System.out.println(radio.getClass().getSimpleName() + " stopped.");
+        System.out.printf("%s stopped. \n", radio.getClass().getSimpleName());
         changePlayingStatus(false);
     }
 
@@ -40,10 +40,10 @@ public abstract class RadioPlayer implements Observer {
      */
     public void changeVolumeRadio(int volume) {
         if (volume >= MIN_VOLUME) {
-            this.setVolume(Math.min(volume, MAX_VOLUME));
+            setVolume(Math.min(volume, MAX_VOLUME));
 
         } else if (volume != WITHOUT_CHANGE_STATE) {
-            this.setVolume(MIN_VOLUME);
+            setVolume(MIN_VOLUME);
         }
     }
 
@@ -52,14 +52,14 @@ public abstract class RadioPlayer implements Observer {
      */
     public void changeFrequencyRadio(double frequency) {
         if (frequency >= 0) {
-            this.setFrequency(frequency);
+            setFrequency(frequency);
         } else if (frequency != WITHOUT_CHANGE_STATE) {
-            this.setFrequency(MIN_FREQUENCY);
+            setFrequency(MIN_FREQUENCY);
         }
     }
 
     public void changePlayingStatus(boolean shouldPLay) {
-        this.isPLaying = shouldPLay;
+        isPLaying = shouldPLay;
     }
 
 
@@ -69,9 +69,9 @@ public abstract class RadioPlayer implements Observer {
 
     public void display() {
         if (isPLaying) {
-            System.out.printf("%s is playing on frequency: %f with volume: %d \n", this.getClass().getSimpleName(), frequency, volume);
+            System.out.printf("%s is playing on frequency: %f with volume: %d \n", getClass().getSimpleName(), frequency, volume);
         } else {
-            System.out.printf("%s isn't playing\n", this.getClass().getSimpleName());
+            System.out.printf("%s isn't playing\n", getClass().getSimpleName());
         }
     }
 

@@ -17,7 +17,7 @@ public class SmartRadioPlayer extends RadioPlayer {
     @Override
     public void update() {
         Direction lastInteractionDisplayDirection = radio.getDisplay().getLastInteractionDirection();
-        int lastInteractionDisplayValue = radio.getDisplay().getLastInteractionValue();
+        int lastValue = radio.getDisplay().getLastInteractionValue();
 
         switch (lastInteractionDisplayDirection) {
             case RIGHT -> {
@@ -30,10 +30,10 @@ public class SmartRadioPlayer extends RadioPlayer {
                     radio.stop();
                 }
             }
-            case UP -> this.setVolume(this.getVolume() + lastInteractionDisplayValue);
-            case DOWN -> this.setVolume(this.getVolume() - lastInteractionDisplayValue);
-            case FORWARD -> this.setFrequency(this.getFrequency() + lastInteractionDisplayValue);
-            case BACK -> this.setFrequency(this.getFrequency() - lastInteractionDisplayValue);
+            case UP -> setVolume(getVolume() + lastValue);
+            case DOWN -> setVolume(getVolume() - lastValue);
+            case FORWARD -> setFrequency(getFrequency() + lastValue);
+            case BACK -> setFrequency(getFrequency() - lastValue);
         }
 
         display();

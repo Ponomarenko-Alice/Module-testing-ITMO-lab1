@@ -19,14 +19,14 @@ public abstract class Wheel implements Observable {
     private Direction lastInteractionDirection;
 
     Wheel() {
-        this.lastInteractionDirection = Direction.NONE;
-        this.lastTwistedDegree = WITHOUT_CHANGE_STATE;
+        lastInteractionDirection = Direction.NONE;
+        lastTwistedDegree = WITHOUT_CHANGE_STATE;
     }
 
     public void setLastInteraction(Direction direction, int degree) throws WheelDirectionException {
         if (Direction.RIGHT.equals(direction) || Direction.LEFT.equals(direction)) {
-            this.lastInteractionDirection = direction;
-            this.lastTwistedDegree = degree;
+            lastInteractionDirection = direction;
+            lastTwistedDegree = degree;
             notifyObservers();
         } else {
             throw new WheelDirectionException("Invalid direction: " + direction);
@@ -35,8 +35,8 @@ public abstract class Wheel implements Observable {
     }
 
     public void setWithoutChangeState() {
-        this.lastInteractionDirection = Direction.NONE;
-        this.lastTwistedDegree = WITHOUT_CHANGE_STATE;
+        lastInteractionDirection = Direction.NONE;
+        lastTwistedDegree = WITHOUT_CHANGE_STATE;
 
     }
 

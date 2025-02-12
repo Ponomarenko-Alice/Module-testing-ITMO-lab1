@@ -40,8 +40,8 @@ public class PrimaryRadioPlayer extends RadioPlayer {
         if (radio.getVolumeWheel().getLastTwistedDegree() != WITHOUT_CHANGE_STATE) {
             Direction volumeDirection = radio.getVolumeWheel().getLastInteractionDirection();
             int newVolume = Direction.RIGHT.equals(volumeDirection)
-                    ? this.getVolume() + radio.getVolumeWheel().getLastTwistedDegree()
-                    : this.getVolume() - radio.getVolumeWheel().getLastTwistedDegree();
+                    ? getVolume() + radio.getVolumeWheel().getLastTwistedDegree()
+                    : getVolume() - radio.getVolumeWheel().getLastTwistedDegree();
             changeVolumeRadio(newVolume);
         }
     }
@@ -54,8 +54,8 @@ public class PrimaryRadioPlayer extends RadioPlayer {
         if (radio.getFrequencyWheel().getLastTwistedDegree() != WITHOUT_CHANGE_STATE) {
             Direction newFrequencyDirection = radio.getFrequencyWheel().getLastInteractionDirection();
             double newFrequencyValue = Direction.RIGHT.equals(newFrequencyDirection)
-                    ? this.getFrequency() + radio.getFrequencyWheel().getLastTwistedDegree()
-                    : this.getFrequency() - radio.getFrequencyWheel().getLastTwistedDegree();
+                    ? getFrequency() + radio.getFrequencyWheel().getLastTwistedDegree()
+                    : getFrequency() - radio.getFrequencyWheel().getLastTwistedDegree();
 
             super.changeFrequencyRadio(newFrequencyValue);
         }
