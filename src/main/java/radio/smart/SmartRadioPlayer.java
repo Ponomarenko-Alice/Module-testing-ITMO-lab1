@@ -5,11 +5,7 @@ import radio.RadioPlayer;
 
 public class SmartRadioPlayer extends RadioPlayer {
 
-    @Override
-    public void changeVolumeRadio(int volume) { //TODO where is freq
-        System.out.println("changeV");
-
-    }
+    SmartRadio radio = (SmartRadio) getRadio();
 
     /**
      * Method collect status information from radio parts (display) and update
@@ -20,8 +16,6 @@ public class SmartRadioPlayer extends RadioPlayer {
      */
     @Override
     public void update() {
-        SmartRadio radio = (SmartRadio) this.getRadio();
-
         Direction lastInteractionDisplayDirection = radio.getDisplay().getLastInteractionDirection();
         int lastInteractionDisplayValue = radio.getDisplay().getLastInteractionValue();
 

@@ -35,19 +35,21 @@ public abstract class RadioPlayer implements Observer {
         changePlayingStatus(false);
     }
 
+    /**
+     * @param volume is checking for new valid volume value
+     */
     public void changeVolumeRadio(int volume) {
         if (volume >= MIN_VOLUME) {
-            if (volume <= MAX_VOLUME) {
-                this.setVolume(volume);
-            } else {
-                this.setVolume(MAX_VOLUME);
-            }
+            this.setVolume(Math.min(volume, MAX_VOLUME));
 
         } else if (volume != WITHOUT_CHANGE_STATE) {
             this.setVolume(MIN_VOLUME);
         }
     }
 
+    /**
+     * @param frequency is checking for new valid frequency value
+     */
     public void changeFrequencyRadio(double frequency) {
         if (frequency >= 0) {
             this.setFrequency(frequency);
