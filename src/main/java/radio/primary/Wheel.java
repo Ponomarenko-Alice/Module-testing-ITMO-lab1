@@ -3,8 +3,8 @@ package radio.primary;
 import exception.WheelDirectionException;
 import lombok.Getter;
 import radio.Direction;
-import radio.Observable;
-import radio.Observer;
+import radio.smart.Observable;
+import util.Observer;
 
 import java.util.LinkedList;
 import java.util.List;

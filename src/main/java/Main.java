@@ -1,3 +1,4 @@
+import human.Human;
 import radio.Direction;
 import radio.Radio;
 import radio.RadioPlayer;
@@ -7,13 +8,14 @@ import radio.smart.SmartRadio;
 import radio.smart.SmartRadioPlayer;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Human zafod = new Human("Zafod");
 
         Display display = new Display();
         RadioPlayer smartRadioPlayer = new SmartRadioPlayer();
         Radio electronicRadio = new SmartRadio(smartRadioPlayer, display);
         smartRadioPlayer.setRadio(electronicRadio);
+        zafod.registerObserver(display);
         display.registerObserver(smartRadioPlayer);
 
         Button button = new Button();
@@ -29,15 +31,14 @@ public class Main {
         frequencyWheel.registerObserver(primaryRadioPlayer);
 
         zafod.press(button);
-
         zafod.twist(volumeWheel, Direction.RIGHT, 50);
-
         zafod.twist(frequencyWheel, Direction.LEFT, 10);
 
         zafod.press(button);
-
-        zafod.wave(Direction.RIGHT);
-        Thread.sleep(100);
+        zafod.wave(Direction.RIGHT, 50);
+        zafod.wave(Direction.FORWARD, 15);
+        zafod.wave(Direction.UP, 30);
+        zafod.wave(Direction.LEFT, 100);
 
     }
 }

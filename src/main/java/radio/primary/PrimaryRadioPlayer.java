@@ -5,13 +5,13 @@ import radio.RadioPlayer;
 
 public class PrimaryRadioPlayer extends RadioPlayer {
     @Override
-    public void changeVolumeRadio(int volume) {
+    public void changeVolumeRadio(int volume) { //TODO
         super.changeVolumeRadio(volume);
         System.out.println("Primary radio volume changed to " + volume);
     }
 
     @Override
-    public void changeFrequencyRadio(double frequency) {
+    public void changeFrequencyRadio(double frequency) { //TODO
         super.changeFrequencyRadio(frequency);
         System.out.println("Primary radio frequency changed to " + frequency);
     }
@@ -58,6 +58,11 @@ public class PrimaryRadioPlayer extends RadioPlayer {
         // to reset changes status after displaying (applying) result of changes
         radio.getVolumeWheel().setWithoutChangeState();
         radio.getFrequencyWheel().setWithoutChangeState();
+    }
+
+    //unused for display, but should be overridden
+    @Override
+    public void update(Direction direction, int waveValue) {
     }
 
 }

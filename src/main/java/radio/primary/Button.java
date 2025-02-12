@@ -1,7 +1,7 @@
 package radio.primary;
 
-import radio.Observable;
-import radio.Observer;
+import radio.smart.Observable;
+import util.Observer;
 
 import java.util.LinkedList;
 import java.util.List;

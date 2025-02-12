@@ -1,4 +1,6 @@
-package radio;
+package radio.smart;
+
+import util.Observer;
 
 public interface Observable {
     void registerObserver(Observer o);
@@ -6,4 +8,5 @@ public interface Observable {
     void removeObserver(Observer o);
 
     void notifyObservers();
+
 }

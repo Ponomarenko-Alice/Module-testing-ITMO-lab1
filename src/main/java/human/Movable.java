@@ -1,7 +1,9 @@
+package human;
+
 import radio.Direction;
 
 public interface Movable {
-    default void wave(Direction direction) {
+    default void wave(Direction direction, int waveValue) {
     }
 
     default void tap() {

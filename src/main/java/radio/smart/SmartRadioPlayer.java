@@ -6,17 +6,7 @@ import radio.RadioPlayer;
 public class SmartRadioPlayer extends RadioPlayer {
 
     @Override
-    public void playRadio() {
-        System.out.println("song");
-    }
-
-    @Override
-    public void stopRadio() {
-        System.out.println("stop");
-    }
-
-    @Override
-    public void changeVolumeRadio(int volume) {
+    public void changeVolumeRadio(int volume) { //TODO where is freq
         System.out.println("changeV");
 
     }
@@ -38,12 +28,12 @@ public class SmartRadioPlayer extends RadioPlayer {
         switch (lastInteractionDisplayDirection) {
             case RIGHT -> {
                 if (!isPLaying()) {
-                    this.playRadio();
+                    radio.play();
                 }
             }
             case LEFT -> {
                 if (isPLaying()) {
-                    this.stopRadio();
+                    radio.stop();
                 }
             }
             case UP -> this.setVolume(this.getVolume() + lastInteractionDisplayValue);
@@ -55,6 +45,11 @@ public class SmartRadioPlayer extends RadioPlayer {
         display();
 
         radio.getDisplay().setWithoutChangeState(); // to reset changes status after displaying (applying) result of changes
+    }
+
+    //unused for display, but should be overridden
+    @Override
+    public void update(Direction direction, int waveValue) {
     }
 
 

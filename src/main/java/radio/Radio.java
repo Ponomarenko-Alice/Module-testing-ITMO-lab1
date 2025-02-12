@@ -1,6 +1,8 @@
 package radio;
 
 import lombok.Getter;
+import radio.smart.Observable;
+import util.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,4 +50,5 @@ public abstract class Radio implements Observable {
             observer.update();
         }
     }
+
 }

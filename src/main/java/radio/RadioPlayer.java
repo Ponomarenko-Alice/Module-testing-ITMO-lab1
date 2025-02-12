@@ -2,6 +2,7 @@ package radio;
 
 import lombok.Getter;
 import lombok.Setter;
+import util.Observer;
 
 @Getter
 @Setter
@@ -25,12 +26,12 @@ public abstract class RadioPlayer implements Observer {
     }
 
     public void playRadio() {
-        System.out.println("Playing primary radio...");
+        System.out.println("Playing " + radio.getClass().getSimpleName() + "...");
         changePlayingStatus(true);
     }
 
     public void stopRadio() {
-        System.out.println("Primary radio stopped.");
+        System.out.println(radio.getClass().getSimpleName() + " stopped.");
         changePlayingStatus(false);
     }
 
@@ -68,7 +69,7 @@ public abstract class RadioPlayer implements Observer {
         if (isPLaying) {
             System.out.printf("%s is playing on frequency: %f with volume: %d \n", this.getClass().getSimpleName(), frequency, volume);
         } else {
-            System.out.printf("%s isn't playing", this.getClass().getSimpleName());
+            System.out.printf("%s isn't playing\n", this.getClass().getSimpleName());
         }
     }
 
