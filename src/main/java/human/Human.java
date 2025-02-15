@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 public class Human implements Movable, Observable {
     private final String name;
-    private final List<Observer> observers = new LinkedList<>();
+    private List<Observer> observers = new LinkedList<>();
 
 
     public Human(String name) {

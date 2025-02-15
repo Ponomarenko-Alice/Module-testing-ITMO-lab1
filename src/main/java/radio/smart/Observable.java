@@ -2,10 +2,19 @@ package radio.smart;
 
 import util.Observer;
 
-public interface Observable {
-    void registerObserver(Observer o);
+import java.util.LinkedList;
+import java.util.List;
 
-    void removeObserver(Observer o);
+public interface Observable {
+    List<Observer> observers = new LinkedList<>();
+
+    default void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    default void removeObserver(Observer o) {
+        observers.remove(o);
+    }
 
     void notifyObservers();
 
