@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Radio implements Observable {
     protected final RadioPlayer radioPlayer;
     @Getter
-    private List<Observer> observers = new ArrayList<>();
+    protected List<Observer> observers = new ArrayList<>();
 
     public Radio(RadioPlayer radioPlayer) {
         this.radioPlayer = radioPlayer;
@@ -41,4 +41,13 @@ public abstract class Radio implements Observable {
         }
     }
 
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
 }

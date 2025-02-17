@@ -10,6 +10,7 @@ public class PrimaryRadio extends Radio {
     private final VolumeWheel volumeWheel;
     private final FrequencyWheel frequencyWheel;
 
+
     public PrimaryRadio(RadioPlayer radioPlayer, Button button, Wheel volumeWheel, Wheel frequencyWheel) {
         super(radioPlayer);
         this.button = button;

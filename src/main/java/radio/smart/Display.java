@@ -15,7 +15,7 @@ public class Display implements Observable, Observer {
     protected final int MIN_WAVE_VALUE = 0;
     protected final int MAX_WAVE_VALUE = 100;
     protected final int WITHOUT_CHANGE_STATE = -1000;
-    private List<Observer> observers = new LinkedList<>();
+    private final List<Observer> observers = new LinkedList<>();
     private Direction lastInteractionDirection;
     private int lastInteractionValue = WITHOUT_CHANGE_STATE;
 
@@ -64,5 +64,15 @@ public class Display implements Observable, Observer {
             System.out.printf("Failed to interact with display. %s \n", e.getMessage());
         }
 
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
     }
 }

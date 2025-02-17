@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 public class Button implements Observable {
-    private List<Observer> observers = new LinkedList<>();
+    private final List<Observer> observers = new LinkedList<>();
     private boolean isPressed;
 
     public Button() {
@@ -19,6 +19,16 @@ public class Button implements Observable {
     public void changePressState() {
         isPressed = !isPressed;
         notifyObservers();
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
     }
 
     @Override

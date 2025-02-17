@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 public abstract class Wheel implements Observable {
     protected final int WITHOUT_CHANGE_STATE = -1000;
-    private List<Observer> observers = new LinkedList<>();
+    protected List<Observer> observers = new LinkedList<>();
     private int lastTwistedDegree;
     private Direction lastInteractionDirection;
 
@@ -43,5 +43,15 @@ public abstract class Wheel implements Observable {
         for (Observer observer : observers) {
             observer.update();
         }
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
     }
 }
