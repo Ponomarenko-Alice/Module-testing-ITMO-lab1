@@ -1,11 +1,11 @@
-package human;
+package task3.human;
 
-import exception.WheelDirectionException;
 import lombok.Getter;
-import radio.Direction;
-import radio.primary.Button;
-import radio.primary.Wheel;
-import util.Observer;
+import task3.exception.WheelDirectionException;
+import task3.radio.Direction;
+import task3.radio.primary.Button;
+import task3.radio.primary.Wheel;
+import task3.util.Observer;
 
 import java.util.LinkedList;
 import java.util.List;

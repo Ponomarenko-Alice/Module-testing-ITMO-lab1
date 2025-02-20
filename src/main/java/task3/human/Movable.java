@@ -1,6 +1,6 @@
-package human;
+package task3.human;
 
-import radio.Direction;
+import task3.radio.Direction;
 
 public interface Movable {
     default void wave(Direction direction, int waveValue) {

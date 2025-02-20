@@ -1,6 +1,6 @@
-package radio.smart;
+package task3.radio.smart;
 
-import util.Observer;
+import task3.util.Observer;
 
 public interface Observable {
 

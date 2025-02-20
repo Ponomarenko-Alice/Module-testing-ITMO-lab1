@@ -1,9 +1,9 @@
-package radio.primary;
+package task3.radio.primary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import util.Observer;
+import task3.util.Observer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

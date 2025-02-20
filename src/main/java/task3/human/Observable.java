@@ -1,7 +1,7 @@
-package human;
+package task3.human;
 
-import radio.Direction;
-import util.Observer;
+import task3.radio.Direction;
+import task3.util.Observer;
 
 public interface Observable {
     void registerObserver(Observer o);

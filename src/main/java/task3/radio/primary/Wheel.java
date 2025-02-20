@@ -1,22 +1,16 @@
-package radio.primary;
+package task3.radio.primary;
 
-import exception.WheelDirectionException;
 import lombok.Getter;
-import radio.Direction;
-import radio.smart.Observable;
-import util.Observer;
-
-import java.util.LinkedList;
-import java.util.List;
+import task3.exception.WheelDirectionException;
+import task3.radio.Direction;
 
 @Getter
-public abstract class Wheel implements Observable {
+public class Wheel {
     protected final int WITHOUT_CHANGE_STATE = -1000;
-    protected List<Observer> observers = new LinkedList<>();
     private int lastTwistedDegree;
     private Direction lastInteractionDirection;
 
-    Wheel() {
+    public Wheel() {
         lastInteractionDirection = Direction.NONE;
         lastTwistedDegree = WITHOUT_CHANGE_STATE;
     }
@@ -25,7 +19,6 @@ public abstract class Wheel implements Observable {
         if (Direction.RIGHT.equals(direction) || Direction.LEFT.equals(direction)) {
             lastInteractionDirection = direction;
             lastTwistedDegree = degree;
-            notifyObservers();
         } else {
             throw new WheelDirectionException("Invalid direction: " + direction);
         }
@@ -38,20 +31,4 @@ public abstract class Wheel implements Observable {
 
     }
 
-    @Override
-    public void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update();
-        }
-    }
-
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void removeObserver(Observer o) {
-        observers.remove(o);
-    }
 }

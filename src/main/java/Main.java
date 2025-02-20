@@ -1,34 +1,35 @@
-import human.Human;
-import radio.Direction;
-import radio.Radio;
-import radio.RadioPlayer;
-import radio.primary.*;
-import radio.smart.Display;
-import radio.smart.SmartRadio;
-import radio.smart.SmartRadioPlayer;
+import task3.human.Human;
+import task3.radio.Direction;
+import task3.radio.Radio;
+import task3.radio.RadioPlayer;
+import task3.radio.primary.Button;
+import task3.radio.primary.PrimaryRadioPlayer;
+import task3.radio.primary.Wheel;
+import task3.radio.smart.Display;
+import task3.radio.smart.SmartRadioPlayer;
 
 public class Main {
     public static void main(String[] args) {
         Human zafod = new Human("Zafod");
 
         Display display = new Display();
-        RadioPlayer smartRadioPlayer = new SmartRadioPlayer();
-        Radio electronicRadio = new SmartRadio(smartRadioPlayer, display);
-        smartRadioPlayer.setRadio(electronicRadio);
-        zafod.registerObserver(display);
-        display.registerObserver(smartRadioPlayer);
+        Radio electronicRadio = new Radio();
+        RadioPlayer smartRadioPlayer = new SmartRadioPlayer(electronicRadio, display);
+
+
+//        zafod.registerObserver(display);
+//        display.registerObserver(smartRadioPlayer);
 
         Button button = new Button();
-        Wheel volumeWheel = new VolumeWheel();
-        Wheel frequencyWheel = new FrequencyWheel();
-        PrimaryRadioPlayer primaryRadioPlayer = new PrimaryRadioPlayer();
-        Radio primaryRadio = new PrimaryRadio(primaryRadioPlayer, button, volumeWheel, frequencyWheel);
-        primaryRadioPlayer.setRadio(primaryRadio);
-
-        primaryRadio.registerObserver(primaryRadioPlayer);
-        button.registerObserver(primaryRadioPlayer);
-        volumeWheel.registerObserver(primaryRadioPlayer);
-        frequencyWheel.registerObserver(primaryRadioPlayer);
+        Wheel volumeWheel = new Wheel();
+        Wheel frequencyWheel = new Wheel();
+        Radio primaryRadio = new Radio();
+        PrimaryRadioPlayer primaryRadioPlayer = new PrimaryRadioPlayer(primaryRadio, button, volumeWheel, frequencyWheel);
+//
+//        primaryRadio.registerObserver(primaryRadioPlayer);
+//        button.registerObserver(primaryRadioPlayer);
+//        volumeWheel.registerObserver(primaryRadioPlayer);
+//        frequencyWheel.registerObserver(primaryRadioPlayer);
 
         zafod.press(button);
         zafod.twist(volumeWheel, Direction.RIGHT, 50);

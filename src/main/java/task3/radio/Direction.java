@@ -1,4 +1,4 @@
-package radio;
+package task3.radio;
 
 public enum Direction {
     UP,
