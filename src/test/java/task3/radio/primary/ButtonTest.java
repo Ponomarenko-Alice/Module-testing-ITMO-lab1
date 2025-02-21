@@ -50,7 +50,7 @@ public class ButtonTest {
 
 
     @Test
-    void testNotifyObservers() {
+    void testCallUpdateMethodAfterChangingButtonStatus() {
         Observer testObserver = mock(Observer.class);
         button.registerObserver(testObserver);
         button.changePressState();

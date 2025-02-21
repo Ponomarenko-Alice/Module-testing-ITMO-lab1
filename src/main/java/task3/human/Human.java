@@ -5,6 +5,7 @@ import task3.exception.WheelDirectionException;
 import task3.radio.Direction;
 import task3.radio.primary.Button;
 import task3.radio.primary.Wheel;
+import task3.util.Observable;
 import task3.util.Observer;
 
 import java.util.LinkedList;
@@ -61,6 +62,15 @@ public class Human implements Movable, Observable {
         observers.remove(o);
     }
 
+    @Override
+    public void notifyObservers() {
+        //unused
+    }
+
+    /**
+     *
+     * Observer is a display of radio
+     */
     @Override
     public void notifyObservers(Direction direction, int waveValue) {
         for (Observer observer : observers) {

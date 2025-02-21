@@ -14,22 +14,21 @@ public class Main {
 
         Display display = new Display();
         Radio electronicRadio = new Radio();
-        RadioPlayer smartRadioPlayer = new SmartRadioPlayer(electronicRadio, display);
+        SmartRadioPlayer smartRadioPlayer = new SmartRadioPlayer(electronicRadio, display);
 
 
-//        zafod.registerObserver(display);
-//        display.registerObserver(smartRadioPlayer);
+        zafod.registerObserver(display);
+        display.registerObserver(smartRadioPlayer);
 
         Button button = new Button();
         Wheel volumeWheel = new Wheel();
         Wheel frequencyWheel = new Wheel();
         Radio primaryRadio = new Radio();
         PrimaryRadioPlayer primaryRadioPlayer = new PrimaryRadioPlayer(primaryRadio, button, volumeWheel, frequencyWheel);
-//
-//        primaryRadio.registerObserver(primaryRadioPlayer);
-//        button.registerObserver(primaryRadioPlayer);
-//        volumeWheel.registerObserver(primaryRadioPlayer);
-//        frequencyWheel.registerObserver(primaryRadioPlayer);
+
+        button.registerObserver(primaryRadioPlayer);
+        volumeWheel.registerObserver(primaryRadioPlayer);
+        frequencyWheel.registerObserver(primaryRadioPlayer);
 
         zafod.press(button);
         zafod.twist(volumeWheel, Direction.RIGHT, 50);

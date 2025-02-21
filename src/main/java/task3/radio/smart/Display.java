@@ -3,16 +3,23 @@ package task3.radio.smart;
 import lombok.Getter;
 import task3.exception.DisplayInteractionException;
 import task3.radio.Direction;
+import task3.util.Observable;
+import task3.util.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
-public class Display {
+public class Display implements Observer, Observable {
 
     protected final int MIN_WAVE_VALUE = 0;
     protected final int MAX_WAVE_VALUE = 100;
     protected final int WITHOUT_CHANGE_STATE = -1000;
     private Direction lastDirection;
     private int lastValue = WITHOUT_CHANGE_STATE;
+
+    private List<Observer> observers = new ArrayList<>();
 
     /**
      * @param waveValue can't be negative, interaction won't be completed.
@@ -27,7 +34,7 @@ public class Display {
         } else {
             lastValue = waveValue;
         }
-//        notifyObservers(); //TODO enable
+        notifyObservers();
     }
 
     public void setWithoutChangeState() {
@@ -36,15 +43,51 @@ public class Display {
 
     }
 
-
+    /**
+     * Observer for human
+     */
     public void update(Direction direction, int waveValue) {
         try {
             setLastInteractionDirection(direction, waveValue);
         } catch (DisplayInteractionException e) { // cancel potential applied changes
-            lastDirection = Direction.NONE;
-            lastValue = WITHOUT_CHANGE_STATE;
             System.out.printf("Failed to interact with display. %s \n", e.getMessage());
+            resetLastValues();
         }
 
+    }
+
+    private void resetLastValues() {
+        lastDirection = Direction.NONE;
+        lastValue = WITHOUT_CHANGE_STATE;
+    }
+
+    @Override
+    public void update() {
+        //unused
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    /**
+     * Notifying SmartRadioPlayer about display changing
+     */
+    @Override
+    public void notifyObservers() {
+        for (Observer observer: observers) {
+            observer.update();
+        }
+    }
+
+    @Override
+    public void notifyObservers(Direction direction, int waveValue) {
+        //unused
     }
 }

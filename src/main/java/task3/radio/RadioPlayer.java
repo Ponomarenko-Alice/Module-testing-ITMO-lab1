@@ -27,11 +27,11 @@ public abstract class RadioPlayer {
         radio.setVolume(radio.getVolume() - value);
     }
 
-    public void frequencyUpByValue(int value) {
+    public void frequencyUpByValue(double value) {
         radio.setFrequency(radio.getFrequency() + value);
     }
 
-    public void frequencyDownByValue(int value) {
+    public void frequencyDownByValue(double value) {
         radio.setFrequency(radio.getFrequency() - value);
     }
 

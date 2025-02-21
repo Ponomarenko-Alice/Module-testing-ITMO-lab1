@@ -5,9 +5,10 @@ import task3.exception.WheelDirectionException;
 import task3.radio.Direction;
 import task3.radio.Radio;
 import task3.radio.RadioPlayer;
+import task3.util.Observer;
 
 @Getter
-public class PrimaryRadioPlayer extends RadioPlayer {
+public class PrimaryRadioPlayer extends RadioPlayer implements Observer {
     private final Button button;
     private final Wheel volumeWheel;
     private final Wheel frequencyWheel;
@@ -27,6 +28,18 @@ public class PrimaryRadioPlayer extends RadioPlayer {
      * Otherwise, if radioPlayer is already stopped and receiving signal to stop, do nothing.
      * Displays the result of changes.
      */
+    @Override
+    public void update() {
+        try {
+            handlePlayState();
+            handleVolumeChange();
+            handleFrequencyChange();
+        } catch (WheelDirectionException e) {
+            System.out.printf("Failed to interact with primary radio. %s \n", e.getMessage());
+            resetChangeState();
+        }
+        radio.display();
+    }
 
     private void handlePlayState() {
         boolean shouldPlay = getButton().isPressed();
@@ -49,6 +62,8 @@ public class PrimaryRadioPlayer extends RadioPlayer {
                 volumeUpByValue(volumeWheel.getLastTwistedDegree());
             } else if (Direction.LEFT.equals(volumeDirection)) {
                 volumeDownByValue(volumeWheel.getLastTwistedDegree());
+            } else {
+                throw new WheelDirectionException("Invalid direction");
             }
         }
     }
@@ -58,7 +73,7 @@ public class PrimaryRadioPlayer extends RadioPlayer {
      * value by adding or subtracting it from the current frequency value
      * Guarantees that last twisted wheel direction is valid //TODO протестировать этот факт
      */
-    private void handleFrequencyChange(Radio radio) throws WheelDirectionException {
+    private void handleFrequencyChange() throws WheelDirectionException {
         if (frequencyWheel.getLastTwistedDegree() != frequencyWheel.WITHOUT_CHANGE_STATE) {
             Direction newFrequencyDirection = frequencyWheel.getLastInteractionDirection();
 
@@ -67,7 +82,7 @@ public class PrimaryRadioPlayer extends RadioPlayer {
             } else if (Direction.LEFT.equals(newFrequencyDirection)) {
                 frequencyDownByValue(frequencyWheel.getLastTwistedDegree());
             } else {
-                throw new WheelDirectionException("Invalid direction"); //TODO не забыть обработать в верхнесм уровне
+                throw new WheelDirectionException("Invalid direction");
             }
         }
     }
@@ -75,9 +90,13 @@ public class PrimaryRadioPlayer extends RadioPlayer {
     /**
      * Reset change values after applying changes to avoid impact on the next updates
      */
-    private void resetChangeState(Radio radio) {
+    private void resetChangeState() {
         volumeWheel.setWithoutChangeState();
         frequencyWheel.setWithoutChangeState();
     }
 
+    @Override
+    public void update(Direction direction, int waveValue) {
+        //unused
+    }
 }
