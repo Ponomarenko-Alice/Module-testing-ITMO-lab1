@@ -5,6 +5,7 @@ import java.util.Comparator;
 class SkewHeap<T> {
     private final Comparator<T> comparator;
     private Node<T> root;
+
     public SkewHeap(Comparator<T> comparator) {
         this.comparator = comparator;
         this.root = null;

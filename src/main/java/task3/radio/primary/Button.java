@@ -10,8 +10,8 @@ import java.util.List;
 
 @Getter
 public class Button implements Observable {
-    private boolean isPressed;
     List<Observer> observers = new ArrayList<>();
+    private boolean isPressed;
 
     public Button() {
         this.isPressed = false;
@@ -29,7 +29,7 @@ public class Button implements Observable {
 
     @Override
     public void removeObserver(Observer o) {
-    observers.remove(o);
+        observers.remove(o);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Button implements Observable {
      */
     @Override
     public void notifyObservers() {
-        for (Observer observer: observers) {
+        for (Observer observer : observers) {
             observer.update();
         }
     }

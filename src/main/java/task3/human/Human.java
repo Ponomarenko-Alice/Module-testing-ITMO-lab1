@@ -68,7 +68,6 @@ public class Human implements Movable, Observable {
     }
 
     /**
-     *
      * Observer is a display of radio
      */
     @Override

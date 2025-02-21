@@ -27,41 +27,31 @@ public class WheelTest {
 
     @Test
     void testSetInvalidWheelUpDirection() {
-        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> {
-            radioPlayer.getFrequencyWheel().setLastInteraction(Direction.UP, 10);
-        });
+        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> radioPlayer.getFrequencyWheel().setLastInteraction(Direction.UP, 10));
         assertEquals("Invalid direction: " + Direction.UP, directionException.getMessage());
     }
 
     @Test
     void testSetInvalidWheelDownDirection() {
-        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> {
-            radioPlayer.getFrequencyWheel().setLastInteraction(Direction.DOWN, 10);
-        });
+        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> radioPlayer.getFrequencyWheel().setLastInteraction(Direction.DOWN, 10));
         assertEquals("Invalid direction: " + Direction.DOWN, directionException.getMessage());
     }
 
     @Test
     void testSetInvalidWheelForwardDirection() {
-        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> {
-            radioPlayer.getFrequencyWheel().setLastInteraction(Direction.FORWARD, 10);
-        });
+        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> radioPlayer.getFrequencyWheel().setLastInteraction(Direction.FORWARD, 10));
         assertEquals("Invalid direction: " + Direction.FORWARD, directionException.getMessage());
     }
 
     @Test
     void testSetInvalidWheelBackDirection() {
-        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> {
-            radioPlayer.getFrequencyWheel().setLastInteraction(Direction.BACK, 10);
-        });
+        WheelDirectionException directionException = assertThrows(WheelDirectionException.class, () -> radioPlayer.getFrequencyWheel().setLastInteraction(Direction.BACK, 10));
         assertEquals("Invalid direction: " + Direction.BACK, directionException.getMessage());
     }
 
     @Test
     void testSetWheelNoneDirection() {
-        assertDoesNotThrow(() -> {
-            radioPlayer.getFrequencyWheel().setLastInteraction(Direction.NONE, 10);
-        });
+        assertDoesNotThrow(() -> radioPlayer.getFrequencyWheel().setLastInteraction(Direction.NONE, 10));
     }
 
     @Test

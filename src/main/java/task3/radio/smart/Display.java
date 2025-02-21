@@ -16,10 +16,9 @@ public class Display implements Observer, Observable {
     protected final int MIN_WAVE_VALUE = 0;
     protected final int MAX_WAVE_VALUE = 100;
     protected final int WITHOUT_CHANGE_STATE = -1000;
+    private final List<Observer> observers = new ArrayList<>();
     private Direction lastDirection;
     private int lastValue = WITHOUT_CHANGE_STATE;
-
-    private List<Observer> observers = new ArrayList<>();
 
     /**
      * @param waveValue can't be negative, interaction won't be completed.
@@ -81,7 +80,7 @@ public class Display implements Observer, Observable {
      */
     @Override
     public void notifyObservers() {
-        for (Observer observer: observers) {
+        for (Observer observer : observers) {
             observer.update();
         }
     }
