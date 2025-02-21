@@ -1,7 +1,10 @@
 package task1;
 
 public class Sin {
-    public static long factorial(int n) {
+    public long factorial(int n) throws IllegalArgumentException {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
         long fact = 1;
         for (int i = 1; i <= n; i++) {
             fact *= i;

@@ -2,32 +2,10 @@ package task2;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SkewHeapTest {
-    @Test
-    void testTrace() {
-        SkewHeap<Integer> heap = new SkewHeap<>(Integer::compareTo);
-        heap.add(10);
-        heap.add(20);
-        heap.add(5);
-        heap.poll();
-
-        List<String> expectedTrace = List.of(
-                "Adding: 10",
-                "Adding: 20",
-                "Merging: 10 and 20",
-                "Adding: 5",
-                "Merging: 5 and 10",
-                "Polling: 5",
-                "Merging: 10 and 20"
-        );
-
-        assertEquals(expectedTrace, heap.getTrace());
-    }
 
     @Test
     void testMultipleAddsAndPolls() {

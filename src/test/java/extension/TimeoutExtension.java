@@ -25,12 +25,12 @@ public class TimeoutExtension implements BeforeTestExecutionCallback, AfterTestE
     }
 
     @Override
-    public void beforeTestExecution(ExtensionContext context) throws Exception {
+    public void beforeTestExecution(ExtensionContext context) {
         context.getStore(ExtensionContext.Namespace.GLOBAL).put("startTime", System.currentTimeMillis());
     }
 
     @Override
-    public void afterTestExecution(ExtensionContext context) throws Exception {
+    public void afterTestExecution(ExtensionContext context) throws TimeoutException {
         long startTime = context.getStore(ExtensionContext.Namespace.GLOBAL).get("startTime", Long.class);
         long duration = System.currentTimeMillis() - startTime;
 
