@@ -1,9 +1,12 @@
 package task1;
 
+import extension.TimeoutExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(TimeoutExtension.class)
 public class SinTest {
     private final Sin sinFunction = new Sin();
 
@@ -33,6 +36,13 @@ public class SinTest {
 
     @Test
     void testSinTaylorLargeIterations() {
+        double result = sinFunction.sinTaylor(Math.PI / 3, 50);
+        assertTrue(Double.isNaN(result));
+    }
+
+    @Test
+    void testSinTaylorTooooLargeIterations() throws InterruptedException {
+        Thread.sleep(600);
         double result = sinFunction.sinTaylor(Math.PI / 3, 50);
         assertTrue(Double.isNaN(result));
     }
