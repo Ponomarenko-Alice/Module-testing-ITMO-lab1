@@ -1,10 +1,12 @@
 package task3.radio.smart;
 
+import lombok.Getter;
 import task3.radio.Direction;
 import task3.radio.Radio;
 import task3.radio.RadioPlayer;
 import task3.util.Observer;
 
+@Getter
 public class SmartRadioPlayer extends RadioPlayer implements Observer {
     private final Display display;
 

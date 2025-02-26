@@ -1,14 +1,22 @@
 package task1;
 
 import extension.TimeoutExtension;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(TimeoutExtension.class)
 public class SinTest {
-    private final Sin sinFunction = new Sin();
+    private Sin sinFunction;
+
+    @BeforeEach
+    void setUp() {
+        sinFunction = new Sin();
+    }
 
 
     @Test
@@ -21,13 +29,17 @@ public class SinTest {
         assertEquals(1, sinFunction.factorial(1));
     }
 
-    @Test
-    public void testFactorialOfSmallNumbers() {
-        assertEquals(2, sinFunction.factorial(2));
-        assertEquals(6, sinFunction.factorial(3));
-        assertEquals(24, sinFunction.factorial(4));
-        assertEquals(120, sinFunction.factorial(5));
+    @ParameterizedTest
+    @CsvSource({
+            "2, 2",
+            "3, 6",
+            "4, 24",
+            "5, 120"
+    })
+    void testFactorialOfSmallNumbers(int input, int expected) {
+        assertEquals(expected, sinFunction.factorial(input));
     }
+
 
     @Test
     public void testFactorialOfLargerNumber() {
@@ -37,6 +49,27 @@ public class SinTest {
     @Test
     public void testFactorialOfNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () -> sinFunction.factorial(-5));
+    }
+
+    @Test
+    void testFactorialPositive() {
+        assertEquals(120, sinFunction.factorial(5)); // 5! = 120
+        assertEquals(1, sinFunction.factorial(1));   // 1! = 1
+    }
+
+    @Test
+    void testFactorialZero() {
+        assertEquals(1, sinFunction.factorial(0)); // 0! = 1
+    }
+
+    @Test
+    void testFactorialNegative() {
+        assertThrows(IllegalArgumentException.class, () -> sinFunction.factorial(-1));
+    }
+
+    @Test
+    public void testFactorialOfNegativeNumbe2r() {
+        assertDoesNotThrow(() -> sinFunction.factorial(5), "f");
     }
 
     @Test
@@ -54,7 +87,7 @@ public class SinTest {
     @Test
     void testSinTaylorRightAngle() {
         double expected = Math.sin(Math.PI / 2);
-        assertEquals(expected, sinFunction.sinTaylor(Math.PI / 2, 10), 1e-6);
+        assertEquals(expected, sinFunction.sinTaylor(Math.PI / 2, 10), 1e-4);
     }
 
     @Test

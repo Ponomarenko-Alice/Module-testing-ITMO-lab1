@@ -36,7 +36,7 @@ public class ButtonTest {
         Observer testObserver = mock(Observer.class);
         button.registerObserver(testObserver);
         assertAll(() -> assertEquals(1, button.getObservers().size()),
-                () -> assertEquals(testObserver, button.getObservers().getFirst()));
+                () -> assertEquals(testObserver, button.getObservers().get(0)));
     }
 
     @Test
